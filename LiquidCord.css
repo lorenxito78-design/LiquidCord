@@ -1,0 +1,2777 @@
+/**
+ * ===============================================
+ * 💧 LIQUIDCORD - Premium Liquid Glass Theme
+ * ===============================================
+ * A comprehensive Liquid Glass inspired Discord theme
+ * with 60+ smooth animations and glassmorphism effects.
+ * 
+ * Version: 2.0.0
+ * Compatible: BetterDiscord, Vencord, Powercord
+ * ===============================================
+ */
+
+/* ===============================================
+   🎨 CSS CUSTOM PROPERTIES
+   =============================================== */
+
+:root {
+    /* ═══════════════════════════════════════════
+       🌫️ Primary Glass Effects
+       ═══════════════════════════════════════════ */
+    --liquid-blur: 12px;
+    --liquid-blur-sm: 6px;
+    --liquid-blur-md: 12px;
+    --liquid-blur-lg: 20px;
+    --liquid-blur-xl: 30px;
+    
+    --liquid-brightness: 0.85;
+    --liquid-brightness-sm: 0.7;
+    --liquid-brightness-md: 0.85;
+    --liquid-brightness-lg: 0.95;
+    
+    --liquid-saturation: 180%;
+    --liquid-saturation-sm: 120%;
+    --liquid-saturation-md: 180%;
+    --liquid-saturation-lg: 220%;
+    
+    /* ═══════════════════════════════════════════
+       🌊 Liquid Wave Effects
+       ═══════════════════════════════════════════ */
+    --liquid-wave-speed: 3s;
+    --liquid-wave-intensity: 5px;
+    --liquid-flow-speed: 2s;
+    
+    /* ═══════════════════════════════════════════
+       💎 Glass Shadows - Multiple Layers
+       ═══════════════════════════════════════════ */
+    --glass-shadow-subtle:
+        inset 0 1px 1px rgba(255, 255, 255, 0.15),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+    
+    --glass-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.25),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.1),
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+    
+    --glass-shadow-hover:
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.15),
+        0 12px 48px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.12);
+    
+    --glass-shadow-prominent:
+        inset 0 2px 2px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 2px rgba(0, 0, 0, 0.15),
+        0 16px 64px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.15);
+    
+    --glass-shadow-active:
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    
+    --glass-shadow-inner-glow:
+        inset 0 0 20px rgba(255, 255, 255, 0.1),
+        inset 0 0 40px rgba(255, 255, 255, 0.05);
+    
+    --glass-shadow-outer-glow:
+        0 0 20px rgba(255, 255, 255, 0.15),
+        0 0 40px rgba(255, 255, 255, 0.1),
+        0 0 60px rgba(255, 255, 255, 0.05);
+    
+    /* ═══════════════════════════════════════════
+       🎨 Color Palette
+       ═══════════════════════════════════════════ */
+    --color-primary: #5865F2;
+    --color-primary-hover: #4752C4;
+    --color-danger: #ED4245;
+    --color-success: #3BA55C;
+    --color-warning: #FAA61A;
+    --color-online: #3BA55C;
+    --color-idle: #FAA61A;
+    --color-dnd: #ED4245;
+    --color-offline: #747F8D;
+    --color-streaming: #9146FF;
+    
+    --text-white: rgba(255, 255, 255, 0.95);
+    --text-white-muted: rgba(255, 255, 255, 0.7);
+    --text-white-secondary: rgba(255, 255, 255, 0.6);
+    --text-white-tertiary: rgba(255, 255, 255, 0.45);
+    
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    --bg-overlay-strong: rgba(0, 0, 0, 0.7);
+    --bg-glass: rgba(255, 255, 255, 0.05);
+    --bg-glass-strong: rgba(255, 255, 255, 0.1);
+    
+    /* ═══════════════════════════════════════════
+       📐 Border Radius Scale
+       ═══════════════════════════════════════════ */
+    --radius-xs: 4px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-2xl: 24px;
+    --radius-3xl: 30px;
+    --radius-full: 9999px;
+    
+    /* ═══════════════════════════════════════════
+       ⏱️ Animation Timing Functions
+       ═══════════════════════════════════════════ */
+    --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-liquid: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-float: cubic-bezier(0.8, 0, 0.2, 1);
+    
+    --transition-instant: 0.05s;
+    --transition-fast: 0.15s;
+    --transition-normal: 0.25s;
+    --transition-slow: 0.4s;
+    --transition-slower: 0.6s;
+    --transition-smooth: 0.5s;
+    
+    /* ═══════════════════════════════════════════
+       📏 Spacing Scale
+       ═══════════════════════════════════════════ */
+    --space-1xs: 2px;
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 12px;
+    --space-lg: 16px;
+    --space-xl: 24px;
+    --space-2xl: 32px;
+    --space-3xl: 48px;
+    
+    /* ═══════════════════════════════════════════
+       🖼️ Background Image
+       ═══════════════════════════════════════════ */
+    --background-image: url('https://i.imgur.com/hpHXrym.png');
+    --background-position: center;
+    --background-size: cover;
+    --background-repeat: no-repeat;
+    --background-attachment: fixed;
+    
+    /* ═══════════════════════════════════════════
+       🔤 Typography Scale
+       ═══════════════════════════════════════════ */
+    --font-size-xs: 10px;
+    --font-size-sm: 12px;
+    --font-size-md: 14px;
+    --font-size-lg: 16px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 32px;
+    
+    /* ═══════════════════════════════════════════
+       📐 Z-Index Scale
+       ═══════════════════════════════════════════ */
+    --z-base: 0;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal-backdrop: 400;
+    --z-modal: 500;
+    --z-popover: 600;
+    --z-tooltip: 700;
+    --z-toast: 800;
+}
+
+/* ══════════════════���═���══════════════════════
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   ANIMATIONS DEFINITIONS - 60+ KEYFRAMES
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 1-5: FADE TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 1. Fade In */
+@keyframes LC-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 2. Fade In Up */
+@keyframes LC-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 3. Fade In Down */
+@keyframes LC-fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 4. Fade In Left */
+@keyframes LC-fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 5. Fade In Right */
+@keyframes LC-fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 6-10: SCALE TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 6. Scale In */
+@keyframes LC-scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 7. Scale In Bounce */
+@keyframes LC-scaleInBounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 8. Scale Out */
+@keyframes LC-scaleOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+/* 9. Zoom In */
+@keyframes LC-zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 10. Zoom Pulse */
+@keyframes LC-zoomPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 11-15: SLIDE TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 11. Slide Up */
+@keyframes LC-slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* 12. Slide Down */
+@keyframes LC-slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* 13. Slide Left */
+@keyframes LC-slideLeft {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* 14. Slide Right */
+@keyframes LC-slideRight {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* 15. Slide In Center */
+@keyframes LC-slideInCenter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 16-20: ROTATE TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 16. Rotate In */
+@keyframes LC-rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-180deg) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+/* 17. Rotate Clockwise */
+@keyframes LC-rotateClockwise {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 18. Rotate Counter-Clockwise */
+@keyframes LC-rotateCounterClockwise {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+/* 19. Spin */
+@keyframes LC-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 20. Spin Reverse */
+@keyframes LC-spinReverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 21-25: LIQUID FLOAT TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 21. Liquid Float Up */
+@keyframes LC-liquidFloatUp {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-4px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(-2px);
+    }
+}
+
+/* 22. Liquid Float Down */
+@keyframes LC-liquidFloatDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(4px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(2px);
+    }
+}
+
+/* 23. Liquid Wave */
+@keyframes LC-liquidWave {
+    0%, 100% {
+        transform: translateY(0) skewX(0deg);
+    }
+    25% {
+        transform: translateY(-3px) skewX(1deg);
+    }
+    75% {
+        transform: translateY(3px) skewX(-1deg);
+    }
+}
+
+/* 24. Liquid Sway */
+@keyframes LC-liquidSway {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* 25. Liquid Drift */
+@keyframes LC-liquidDrift {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    25% {
+        transform: translateX(3px) translateY(-3px);
+    }
+    50% {
+        transform: translateX(0) translateY(-5px);
+    }
+    75% {
+        transform: translateX(-3px) translateY(-3px);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 26-30: PULSE TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 26. Pulse */
+@keyframes LC-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* 27. Pulse Glow */
+@keyframes LC-pulseGlow {
+    0%, 100% {
+        box-shadow: var(--glass-shadow), 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: var(--glass-shadow-hover), 0 0 25px rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* 28. Pulse Ring */
+@keyframes LC-pulseRing {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* 29. Pulse Scale */
+@keyframes LC-pulseScale {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* 30. Double Pulse */
+@keyframes LC-doublePulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 31-35: SHINE TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 31. Shine */
+@keyframes LC-shine {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 200%;
+    }
+}
+
+/* 32. Shine Sweep */
+@keyframes LC-shineSweep {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* 33. Shimmer */
+@keyframes LC-shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* 34. Shine Reveal */
+@keyframes LC-shineReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 35. Sparkle */
+@keyframes LC-sparkle {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 36-40: BOUNCE TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 36. Bounce */
+@keyframes LC-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 37. Bounce In */
+@keyframes LC-bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 38. Elastic Bounce */
+@keyframes LC-elasticBounce {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(10%);
+    }
+    75% {
+        transform: translateY(-5%);
+    }
+    90% {
+        transform: translateY(2%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* 39. Bounce Zoom */
+@keyframes LC-bounceZoom {
+    0% {
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 40. Bounce Arrow */
+@keyframes LC-bounceArrow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 41-45: GLOW TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 41. Glow */
+@keyframes LC-glow {
+    0%, 100% {
+        box-shadow: var(--glass-shadow);
+    }
+    50% {
+        box-shadow: var(--glass-shadow-outer-glow), 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* 42. Inner Glow */
+@keyframes LC-innerGlow {
+    0%, 100% {
+        box-shadow: inset 0 0 0 transparent;
+    }
+    50% {
+        box-shadow: var(--glass-shadow-inner-glow);
+    }
+}
+
+/* 43. Neon Pulse */
+@keyframes LC-neonPulse {
+    0%, 100% {
+        box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+    }
+    50% {
+        box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+    }
+}
+
+/* 44. Radiant Glow */
+@keyframes LC-radiantGlow {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* 45. Soft Glow */
+@keyframes LC-softGlow {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.2);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 46-50: WIGGLE TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 46. Wiggle */
+@keyframes LC-wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-3deg);
+    }
+    75% {
+        transform: rotate(3deg);
+    }
+}
+
+/* 47. Shake */
+@keyframes LC-shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* 48. Jello */
+@keyframes LC-jello {
+    0%, 100% {
+        transform: scale3d(1, 1, 1);
+    }
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+        transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+        transform: scale3d(1.05, 0.95, 1);
+    }
+}
+
+/* 49. Twitch */
+@keyframes LC-twitch {
+    0%, 100% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+}
+
+/* 50. Rattle */
+@keyframes LC-rattle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    10% {
+        transform: rotate(5deg);
+    }
+    20% {
+        transform: rotate(-5deg);
+    }
+    30% {
+        transform: rotate(3deg);
+    }
+    40% {
+        transform: rotate(-3deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 51-55: FLIP TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 51. Flip */
+@keyframes LC-flip {
+    from {
+        transform: perspective(400px) rotateY(0);
+    }
+    to {
+        transform: perspective(400px) rotateY(360deg);
+    }
+}
+
+/* 52. Flip In */
+@keyframes LC-flipIn {
+    from {
+        opacity: 0;
+        transform: perspective(400px) rotateY(-90deg);
+    }
+    to {
+        opacity: 1;
+        transform: perspective(400px) rotateY(0);
+    }
+}
+
+/* 53. Flip Out */
+@keyframes LC-flipOut {
+    from {
+        opacity: 1;
+        transform: perspective(400px) rotateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: perspective(400px) rotateY(90deg);
+    }
+}
+
+/* 54. Flip X */
+@keyframes LC-flipX {
+    from {
+        transform: perspective(400px) rotateX(0);
+    }
+    to {
+        transform: perspective(400px) rotateX(360deg);
+    }
+}
+
+/* 55. Flip Y */
+@keyframes LC-flipY {
+    from {
+        transform: perspective(400px) rotateY(0);
+    }
+    to {
+        transform: perspective(400px) rotateY(180deg);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 56-60: ROLL TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 56. Roll In Left */
+@keyframes LC-rollInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%) rotate(-120deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+    }
+}
+
+/* 57. Roll In Right */
+@keyframes LC-rollInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%) rotate(120deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+    }
+}
+
+/* 58. Roll Out Left */
+@keyframes LC-rollOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%) rotate(-120deg);
+    }
+}
+
+/* 59. Roll Out Right */
+@keyframes LC-rollOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%) rotate(120deg);
+    }
+}
+
+/* 60. Rolling */
+@keyframes LC-rolling {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 61-65: MORPH TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 61. Morph Circle */
+@keyframes LC-morphCircle {
+    from {
+        border-radius: 0;
+    }
+    to {
+        border-radius: 50%;
+    }
+}
+
+/* 62. Morph Square */
+@keyframes LC-morphSquare {
+    from {
+        border-radius: 50%;
+    }
+    to {
+        border-radius: 0;
+    }
+}
+
+/* 63. Morph Pill */
+@keyframes LC-morphPill {
+    from {
+        border-radius: 0;
+    }
+    to {
+        border-radius: 9999px;
+    }
+}
+
+/* 64. Morph Blob */
+@keyframes LC-morphBlob {
+    0% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+}
+
+/* 65. Liquid Morph */
+@keyframes LC-liquidMorph {
+    0%, 100% {
+        border-radius: 20% 80% 50% 50% / 50% 20% 80% 80%;
+    }
+    25% {
+        border-radius: 80% 20% 80% 20% / 20% 80% 20% 80%;
+    }
+    50% {
+        border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%;
+    }
+    75% {
+        border-radius: 70% 30% 60% 40% / 30% 60% 40% 70%;
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 66-70: BLUR TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 66. Blur In */
+@keyframes LC-blurIn {
+    from {
+        opacity: 0;
+        filter: blur(20px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* 67. Blur Out */
+@keyframes LC-blurOut {
+    from {
+        opacity: 1;
+        filter: blur(0);
+    }
+    to {
+        opacity: 0;
+        filter: blur(20px);
+    }
+}
+
+/* 68. Blur Scale */
+@keyframes LC-blurScale {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+        transform: scale(1.5);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
+}
+
+/* 69. Blur Reveal */
+@keyframes LC-blurReveal {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+/* 70. Motion Blur */
+@keyframes LC-motionBlur {
+    0% {
+        filter: blur(0);
+    }
+    50% {
+        filter: blur(3px);
+    }
+    100% {
+        filter: blur(0);
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 71-75: STRETCH TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* 71. Stretch In */
+@keyframes LC-stretchIn {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* 72. Elastic Stretch */
+@keyframes LC-elasticStretch {
+    0% {
+        transform: scaleX(0);
+    }
+    30% {
+        transform: scaleX(1.3);
+    }
+    40% {
+        transform: scaleX(0.9);
+    }
+    50% {
+        transform: scaleX(1.1);
+    }
+    65% {
+        transform: scaleX(0.98);
+    }
+    85% {
+        transform: scaleX(1.02);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+/* 73. Wide Stretch */
+@keyframes LC-wideStretch {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* 74. Tall Stretch */
+@keyframes LC-tallStretch {
+    from {
+        height: 0;
+    }
+    to {
+        height: 100%;
+    }
+}
+
+/* 75. Expand */
+@keyframes LC-expand {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   🎬 ANIMATION 76-80: CONFETTI & PARTICLES
+   ------------------------------------------------------------------------------ */
+
+/* 76. Confetti Fall */
+@keyframes LC-confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* 77. Particle Float */
+@keyframes LC-particleFloat {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(10px, -20px);
+        opacity: 0;
+    }
+}
+
+/* 78. Bubble Rise */
+@keyframes LC-bubbleRise {
+    0% {
+        transform: translateY(100%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100%) scale(1);
+        opacity: 0;
+    }
+}
+
+/* 79. Star Twinkle */
+@keyframes LC-starTwinkle {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(0.5);
+        opacity: 0.5;
+    }
+}
+
+/* 80. Rain Drop */
+@keyframes LC-rainDrop {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   BASE STYLES - APPLICATION ELEMENTS
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Background */
+body {
+    background: var(--background-image) var(--background-position)/var(--background-size) var(--background-repeat) var(--background-attachment) !important;
+}
+
+.app__160d8,
+.appMount__51fd7,
+.bg__960e4 {
+    background: transparent !important;
+}
+
+/* App Container */
+.layer__960e4,
+.standardSidebarView__23e6b,
+.contentRegionScroller__23e6b,
+.sidebarRegionScroller__23e6b {
+    background: transparent !important;
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   PANELS & CONTAINERS
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Server Sidebar */
+.sidebarList_c48ade,
+.sidebarList__5e434,
+.sidebarListRounded__5e434 {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) saturate(var(--liquid-saturation)) brightness(var(--liquid-brightness));
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+/* User Panel */
+.panels_c48ade,
+.panels__5e434 {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) saturate(var(--liquid-saturation)) brightness(var(--liquid-brightness));
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-slideUp var(--transition-normal) var(--ease-smooth);
+}
+
+/* Chat Area */
+.chat_f75fb0,
+.chatContent_f75fb0 {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) saturate(var(--liquid-saturation)) brightness(var(--liquid-brightness));
+}
+
+.messagesWrapper__36d07 {
+    background: transparent !important;
+}
+
+/* Members Panel */
+.members_c8ffbb,
+.membersWrap_c8ffbb {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) saturate(var(--liquid-saturation)) brightness(var(--liquid-brightness));
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    margin: var(--space-md);
+    margin-left: 0;
+}
+
+.container_c8ffbb {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Now Playing */
+.nowPlayingColumn__133bf {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) saturate(var(--liquid-saturation)) brightness(var(--liquid-brightness));
+    border-radius: var(--radius-xl);
+    box-shadow: var(--glass-shadow);
+    animation: LC-fadeInRight var(--transition-normal) var(--ease-smooth);
+}
+
+/* People Column */
+.peopleColumn__133bf {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) saturate(var(--liquid-saturation)) brightness(var(--liquid-brightness));
+    border-radius: var(--radius-xl);
+    box-shadow: var(--glass-shadow);
+    animation: LC-fadeInLeft var(--transition-normal) var(--ease-smooth);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   INTERACTIVE ELEMENTS - HOVER STATES
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Buttons */
+[class*="button"],
+[role="button"] {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+[class*="button"]:hover,
+[role="button"]:hover {
+    background: var(--bg-glass-strong) !important;
+    box-shadow: var(--glass-shadow-hover);
+    transform: translateY(-2px);
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+[class*="button"]:active,
+[role="button"]:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: var(--glass-shadow-active);
+    animation: LC-pulseScale var(--transition-fast) var(--ease-liquid);
+}
+
+/* Clickable Items */
+[class*="clickable"],
+.interactive__972a0 {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+[class*="clickable"]:hover,
+.interactive__972a0:hover {
+    background: var(--bg-glass) !important;
+    box-shadow: var(--glass-shadow-hover);
+    transform: scale(1.02);
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+/* Selected Items */
+[class*="clickable"][aria-selected="true"],
+.interactiveSelected__972a0,
+.selected__91a9d,
+[class*="item"][class*="selected"] {
+    background: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: var(--glass-shadow-active);
+    transform: scale(1);
+    animation: LC-glow var(--transition-slow) var(--ease-liquid);
+}
+
+/* Disabled Items */
+[class*="item"][aria-disabled="true"],
+[class*="disabled"] {
+    opacity: 0.5;
+    pointer-events: none;
+    animation: none !important;
+}
+
+/* Focus States */
+[class*="focused"]:focus,
+[class*="focus"]:focus-visible {
+    box-shadow: var(--glass-shadow-hover), 0 0 0 2px rgba(255, 255, 255, 0.2);
+    animation: LC-innerGlow var(--transition-normal) var(--ease-liquid);
+}
+
+/* Active/Toggle States */
+[class*="active"] {
+    background: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: var(--glass-shadow-active);
+    transform: scale(0.98);
+    animation: LC-pulseScale var(--transition-fast) var(--ease-liquid);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   INPUTS & FORMS
+   ═══════════════════════════════════════════
+   ════════════════════════���═���════════════════ */
+
+/* Text Inputs */
+[class*="input"],
+[class*="textInput"],
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="url"],
+textarea {
+    background: var(--bg-overlay) !important;
+    backdrop-filter: blur(var(--liquid-blur-sm)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--glass-shadow-subtle);
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    color: var(--text-white) !important;
+}
+
+[class*="input"]:hover,
+input:hover,
+textarea:hover {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    background: var(--bg-overlay-strong) !important;
+}
+
+[class*="input"]:focus,
+input:focus,
+textarea:focus {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    background: var(--bg-overlay-strong) !important;
+    box-shadow: var(--glass-shadow-hover), 0 0 0 2px rgba(255, 255, 255, 0.1);
+    animation: LC-blurIn var(--transition-fast) var(--ease-liquid);
+}
+
+[class*="input"]::placeholder,
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-white-muted) !important;
+}
+
+/* Search Bar */
+.searchBar_e6b769,
+.searchBar__35e86,
+.searchBar__97492 {
+    background: var(--bg-overlay) !important;
+    backdrop-filter: blur(var(--liquid-blur)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    animation: LC-fadeInUp var(--transition-normal) var(--ease-smooth);
+}
+
+.searchBar_e6b769:hover,
+.searchBar__35e86:hover,
+.searchBar__97492:hover {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: var(--glass-shadow-hover);
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+.searchBar_e6b769:focus-within,
+.searchBar__35e86:focus-within {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow: var(--glass-shadow-prominent);
+    animation: LC-glow var(--transition-slow) var(--ease-liquid);
+}
+
+/* Select Dropdowns */
+[class*="select"],
+[class*="dropdown"],
+select {
+    background: var(--bg-overlay-strong) !important;
+    backdrop-filter: blur(var(--liquid-blur)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    animation: LC-fadeInDown var(--transition-fast) var(--ease-smooth);
+}
+
+[class*="select"]:hover,
+select:hover {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: var(--glass-shadow-hover);
+}
+
+/* Checkboxes */
+[class*="checkbox"] {
+    background: var(--bg-overlay) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: var(--radius-xs) !important;
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+}
+
+[class*="checkbox"]:checked {
+    background: var(--text-white) !important;
+    border-color: var(--text-white) !important;
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+/* Radio Buttons */
+[class*="radio"] {
+    background: var(--bg-overlay) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: var(--radius-full) !important;
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+}
+
+[class*="radio"]:checked {
+    background: var(--text-white) !important;
+    border-color: var(--text-white) !important;
+    animation: LC-pulseRing var(--transition-fast) var(--ease-liquid);
+}
+
+/* Sliders */
+[class*="slider"],
+input[type="range"] {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: var(--radius-full) !important;
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+}
+
+[class*="slider"]::-webkit-slider-thumb,
+input[type="range"]::-webkit-slider-thumb {
+    background: var(--text-white) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+[class*="slider"]:hover::-webkit-slider-thumb,
+input[type="range"]:hover::-webkit-slider-thumb {
+    transform: scale(1.1);
+    box-shadow: var(--glass-shadow-hover);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   MESSAGES & CHAT
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Individual Messages */
+[class*="message"],
+.message__5126c {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    border-radius: var(--radius-lg) !important;
+    animation: LC-fadeInUp var(--transition-normal) var(--ease-smooth);
+}
+
+[class*="message"]:hover {
+    background: var(--bg-glass) !important;
+    box-shadow: var(--glass-shadow-subtle);
+    transform: translateX(2px);
+    animation: LC-slideRight var(--transition-fast) var(--ease-float);
+}
+
+/* Selected Message */
+[class*="message"][class*="selected"] {
+    background: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-glow var(--transition-slow) var(--ease-liquid);
+}
+
+/* Message Group */
+.groupStart {
+    animation: LC-fadeInDown var(--transition-normal) var(--ease-smooth);
+}
+
+/* Cozy Message */
+.cozy_c19a55 {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+.cozy_c19a55:hover {
+    background: var(--bg-glass);
+    border-radius: var(--radius-md);
+    animation: LC-slideInLeft var(--transition-fast) var(--ease-float);
+}
+
+/* Message Header */
+.messageHeader {
+    animation: LC-fadeInDown var(--transition-normal) var(--ease-smooth);
+}
+
+/* Message Content */
+.messageContent {
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+/* Timestamp */
+.timestamp_c19a55 {
+    color: var(--text-white-secondary) !important;
+    animation: LC-fadeIn var(--transition-fast) var(--ease-smooth);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   REACTIONS
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Reaction */
+[class*="reaction"],
+.reaction__23977 {
+    background: var(--bg-overlay) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-full) !important;
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+    animation: LC-scaleIn var(--transition-fast) var(--ease-smooth);
+}
+
+[class*="reaction"]:hover {
+    background: var(--bg-glass-strong) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: var(--glass-shadow);
+    transform: scale(1.05);
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+/* Own Reaction */
+[class*="reactionMe"] {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    animation: LC-glow var(--transition-slow) var(--ease-liquid);
+}
+
+/* Reaction Count */
+.reactionCount__23977 {
+    color: var(--text-white) !important;
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   MEMBER LIST
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Member Item */
+.member_c8ffbb {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+.member_c8ffbb:hover {
+    background: var(--bg-glass) !important;
+    box-shadow: var(--glass-shadow);
+    transform: scale(1.01);
+    animation: LC-liquidFloatUp var(--transition-normal) var(--ease-float);
+}
+
+.member_c8ffbb:active {
+    background: var(--bg-glass-strong) !important;
+    transform: scale(0.99);
+    animation: LC-pulseScale var(--transition-fast) var(--ease-liquid);
+}
+
+/* Member Avatar */
+.avatarWrapper__37e49 {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+.avatarWrapper__37e49:hover {
+    box-shadow: var(--glass-shadow-hover);
+    transform: scale(1.05);
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+/* Member Name */
+[class*="member"] [class*="name"],
+.member-username {
+    color: var(--text-white) !important;
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+}
+
+.member-username:hover {
+    animation: LC-glow var(--transition-fast) var(--ease-liquid);
+}
+
+/* Status Indicator */
+.status__19b6d {
+    animation: LC-liquidFloat var(--transition-slower) var(--ease-float) infinite;
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   CHANNEL LIST
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Channel Item */
+.channel_c9GIuQ,
+[class*="channel"],
+.wrapper__2ea32 {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+.channel_c9GIuQ:hover,
+[class*="channel"]:hover {
+    background: var(--bg-glass) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-liquidSway var(--transition-fast) var(--ease-float);
+}
+
+.channel_c9GIuQ:active,
+[class*="channel"]:active {
+    background: var(--bg-glass-strong) !important;
+    animation: LC-pulseScale var(--transition-fast) var(--ease-liquid);
+}
+
+/* Selected Channel */
+.modeSelected__2ea32 .link__2ea32,
+[class*="channel selected"] {
+    background: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: var(--glass-shadow-active);
+    animation: LC-glow var(--transition-slow) var(--ease-liquid);
+}
+
+/* Channel Name */
+.channelName {
+    color: var(--text-white) !important;
+}
+
+/* Channel Category */
+.categoryItemDefaultCategory_b9ee0c,
+[class*="category"] {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+}
+
+.categoryItemDefaultCategory_b9ee0c:hover {
+    background: var(--bg-glass) !important;
+    box-shadow: var(--glass-shadow-subtle);
+    animation: LC-shine var(--transition-normal) var(--ease-smooth);
+}
+
+/* Unread Indicator */
+[class*="unread"],
+.unread__3是真 {
+    animation: LC-pulseGlow var(--transition-slow) var(--ease-liquid) infinite;
+}
+
+/* Mention Counter */
+.mentionCount {
+    background: var(--color-primary) !important;
+    color: white !important;
+    animation: LC-bounce var(--transition-slower) var(--ease-bounce) infinite;
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   VOICE CHANNELS
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Voice Channel */
+.voiceChannel_dm4root {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    border-radius: var(--radius-lg) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+.voiceChannel_dm4root:hover {
+    background: var(--bg-glass) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+/* Voice User */
+[class*="voiceUser"] {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+[class*="voiceUser"]:hover {
+    background: var(--bg-glass-strong) !important;
+    box-shadow: var(--glass-shadow-hover);
+    animation: LC-glow var(--transition-normal) var(--ease-liquid);
+}
+
+/* Voice States */
+.voiceState_dc8f27 {
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+}
+
+/* Speaking Indicator */
+.speaking__2f4f7 {
+    box-shadow: var(--glass-shadow-active), 0 0 0 2px var(--color-success);
+    animation: LC-radiantGlow var(--transition-slow) var(--ease-liquid) infinite;
+}
+
+/* Muted Indicator */
+[aria-level="muted"] {
+    animation: LC-pulse var(--transition-slow) var(--ease-liquid);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   SERVER LIST (GUILDS)
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Guild Wrapper */
+.wrapper_ef3116 {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) brightness(var(--liquid-brightness));
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    margin: var(--space-sm) !important;
+    padding: var(--space-xs) !important;
+    animation: LC-fadeInRight var(--transition-normal) var(--ease-smooth);
+}
+
+/* Guild Item */
+.listItem_c96c45 {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+.listItem_c96c45:hover {
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+/* Guild Icon */
+.avatar-aKjRh1,
+[class*="guildIcon"] {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+.avatar-aKjRh1:hover,
+[class*="guildIcon"]:hover {
+    box-shadow: var(--glass-shadow-hover);
+    transform: scale(1.1);
+    animation: LC-elasticBounce var(--transition-fast) var(--ease-elastic);
+}
+
+/* Selected Guild */
+[class*="guildSelected"] {
+    box-shadow: var(--glass-shadow-active), 0 0 0 2px var(--color-primary);
+    animation: LC-glow var(--transition-slow) var(--ease-liquid);
+}
+
+/* Guild Unread */
+[class*="guildUnread"] {
+    animation: LC-pulseGlow var(--transition-slow) var(--ease-liquid) infinite;
+}
+
+/* Guild Pill */
+[class*="pill"] span {
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+}
+
+/* Notification Badge */
+.badge_c3d04b {
+    background: var(--color-primary) !important;
+    color: white !important;
+    animation: LC-bounce var(--transition-slower) var(--ease-bounce) infinite;
+}
+
+.badge_c3d04b:hover {
+    transform: scale(1.1);
+    animation: LC-pulseScale var(--transition-fast) var(--ease-liquid);
+}
+
+/* Mention Pill */
+.mention {
+    background: var(--color-primary) !important;
+    color: white !important;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+}
+
+.mention:hover {
+    background: var(--color-primary-hover) !important;
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   POPOUTS & DROPDOWNS
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Popout Container */
+.popout__9047f,
+[class*="popout"],
+#popout_46,
+#popout_52 {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur-lg)) saturate(var(--liquid-saturation-lg)) brightness(var(--liquid-brightness-lg));
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow-prominent);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    animation: LC-popIn var(--transition-normal) var(--ease-bounce);
+}
+
+@keyframes LC-popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Popout Header */
+.popoutHeader {
+    animation: LC-fadeInDown var(--transition-fast) var(--ease-smooth);
+}
+
+/* Popout Row */
+.popoutRow {
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+.popoutRow:hover {
+    background: var(--bg-glass) !important;
+    box-shadow: var(--glass-shadow-subtle);
+    animation: LC-liquidSway var(--transition-fast) var(--ease-float);
+}
+
+/* Dropdown */
+.dropdownButton__2637a,
+[class*="dropdown"] {
+    background: var(--bg-overlay) !important;
+    backdrop-filter: blur(var(--liquid-blur)) !important;
+    border-radius: var(--radius-md);
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    animation: LC-fadeInDown var(--transition-fast) var(--ease-smooth);
+}
+
+.dropdownButton__2637a:hover,
+[class*="dropdown"]:hover {
+    background: var(--bg-overlay-strong) !important;
+    box-shadow: var(--glass-shadow-hover);
+    animation: LC-glow var(--transition-normal) var(--ease-liquid);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   MODALS & OVERLAYS
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Modal */
+.modal_c38106,
+[class*="modal"],
+.root_e3f97f {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur-xl)) saturate(var(--liquid-saturation-lg)) brightness(var(--liquid-brightness-lg));
+    border-radius: var(--radius-2xl) !important;
+    box-shadow: var(--glass-shadow-prominent);
+    animation: LC-scaleInBounce var(--transition-normal) var(--ease-bounce);
+}
+
+/* Modal Content */
+.modalContent {
+    background: transparent !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+/* Modal Footer */
+.modalFooter {
+    background: transparent !important;
+    animation: LC-fadeInUp var(--transition-fast) var(--ease-smooth);
+}
+
+/* Overlay/Scrim */
+.layer__960e4,
+.overlay_c0bea0,
+.scrim__40128 {
+    background: var(--bg-overlay-strong) !important;
+    backdrop-filter: blur(10px) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+/* Dialog */
+.dialogWrapper_b1f768 {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur-lg)) saturate(var(--liquid-saturation)) brightness(var(--liquid-brightness));
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow-prominent);
+    animation: LC-bounceIn var(--transition-normal) var(--ease-bounce);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   USER POPOUT & PROFILE
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* User Popout */
+.outer_c0bea0.user-profile-popout,
+[class*="userPopout"] {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur-lg)) saturate(var(--liquid-saturation-lg)) brightness(var(--liquid-brightness-lg));
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow-prominent);
+    animation: LC-popIn var(--transition-normal) var(--ease-bounce);
+}
+
+/* Profile Banner */
+.banner__68edb {
+    background: transparent !important;
+    animation: LC-fadeInDown var(--transition-fast) var(--ease-smooth);
+}
+
+/* User Avatar */
+.avatarWrapper_d9d192 {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    border-radius: var(--radius-lg) !important;
+}
+
+.avatarWrapper_d9d192:hover {
+    box-shadow: var(--glass-shadow-hover);
+    transform: scale(1.05);
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+/* User Status */
+.statusText__19b6d {
+    color: var(--text-white-secondary) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+/* Activity */
+.activity__4bc8f {
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   CONTEXT MENUS
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Context Menu */
+.menu_c1e9c4,
+[class*="contextMenu"] {
+    background: var(--bg-overlay-strong) !important;
+    backdrop-filter: blur(15px) saturate(180%) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--glass-shadow-hover);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    animation: LC-popIn var(--transition-fast) var(--ease-bounce);
+}
+
+/* Menu Item */
+.menuItemInner_ce8328 {
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+.menuItemInner_ce8328:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: var(--glass-shadow-subtle);
+    animation: LC-liquidSway var(--transition-fast) var(--ease-float);
+}
+
+.menuItemInner_ce8328:active {
+    background: rgba(255, 255, 255, 0.15) !important;
+    animation: LC-pulseScale var(--transition-fast) var(--ease-liquid);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   TOOLTIPS
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Tooltip */
+.tooltip_c36707,
+[class*="tooltip"] {
+    background: var(--bg-overlay-strong) !important;
+    backdrop-filter: blur(var(--liquid-blur)) !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--glass-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    animation: LC-fadeIn var(--transition-fast) var(--ease-smooth);
+}
+
+.tooltipPrimary_c36707 .tooltipPointer_c36707 {
+    border-top-color: transparent !important;
+}
+
+/* Tooltip Pointer */
+.tooltipPointer_c36707 {
+    border: 5px solid transparent;
+    border-top-color: transparent;
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   TAB BAR & HEADERS
+   ���═���════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Tab Bar */
+.tabBar__133bf {
+    background: transparent !important;
+    animation: LC-fadeInDown var(--transition-normal) var(--ease-smooth);
+}
+
+/* Tab Item */
+.side_aa8da2 .item_aa8da2,
+.topPill_aa8da2 .item_aa8da2,
+.tabBar__133bf [class*="item"] {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+.side_aa8da2 .item_aa8da2:hover,
+.topPill_aa8da2 .item_aa8da2:hover {
+    background: var(--bg-glass) !important;
+    box-shadow: var(--glass-shadow);
+    transform: scale(1.02);
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+.side_aa8da2 .selected_aa8da2.item_aa8da2,
+.topPill_aa8da2 .selected_aa8da2.item_aa8da2 {
+    background: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: var(--glass-shadow-active);
+    animation: LC-glow var(--transition-slow) var(--ease-liquid);
+}
+
+/* Header */
+.header__5be3e {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) brightness(var(--liquid-brightness));
+    animation: LC-fadeInDown var(--transition-normal) var(--ease-smooth);
+}
+
+.title_c38106,
+.headerText {
+    color: var(--text-white) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   EMOJI PICKER
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Emoji Picker */
+.emojiPickerHasTabWrapper_c0e32c .categoryList_c0e32c {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur-lg)) saturate(var(--liquid-saturation)) brightness(var(--liquid-brightness));
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-popIn var(--transition-normal) var(--ease-bounce);
+}
+
+/* Emoji Category */
+.categoryItemDefaultCategory_b9ee0c {
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+.categoryItemDefaultCategory_b9ee0c:hover {
+    background: var(--bg-glass-strong) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-shine var(--transition-normal) var(--ease-smooth);
+}
+
+/* Emoji Item */
+.emojiItem_fc7141 {
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+.emojiItem_fc7141:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: var(--glass-shadow);
+    transform: scale(1.15);
+    animation: LC-bounce var(--transition-fast) var(--ease-bounce);
+}
+
+.emojiItem_fc7141.emojiItemSelected_fc7141 {
+    background: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: var(--glass-shadow-active);
+    animation: LC-glow var(--transition-normal) var(--ease-liquid);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   NOTIFICATIONS & NOTICES
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Notice */
+.notice__6e2b9,
+[class*="notice"] {
+    background: var(--bg-overlay-strong) !important;
+    backdrop-filter: blur(var(--liquid-blur)) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-slideUp var(--transition-normal) var(--ease-smooth);
+}
+
+/* New Messages Bar */
+.newMessagesBar__0f481 {
+    background: var(--bg-overlay-strong) !important;
+    backdrop-filter: blur(var(--liquid-blur)) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-slideUp var(--transition-normal) var(--ease-smooth);
+}
+
+.newMessagesBar__0f481:hover {
+    animation: LC-slideDown var(--transition-fast) var(--ease-smooth);
+}
+
+/* Jump Bar */
+.jumpBar {
+    background: var(--bg-overlay-strong) !important;
+    backdrop-filter: blur(var(--liquid-blur)) !important;
+    border-radius: var(--radius-md);
+    box-shadow: var(--glass-shadow);
+    animation: LC-fadeInDown var(--transition-normal) var(--ease-smooth);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   GAMES & ACTIVITIES
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Game Tile */
+.gameTile_e9b191,
+[class*="gameTile"] {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) brightness(var(--liquid-brightness));
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+.gameTile_e9b191:hover {
+    box-shadow: var(--glass-shadow-hover);
+    transform: translateY(-3px);
+    animation: LC-bounce var(--transition-normal) var(--ease-bounce);
+}
+
+/* Activity Section */
+[class*="activitySection"],
+.activitySectionAssets__00943 {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) brightness(var(--liquid-brightness));
+    border-radius: var(--radius-xl);
+    box-shadow: var(--glass-shadow);
+    animation: LC-fadeInUp var(--transition-normal) var(--ease-smooth);
+}
+
+.activitySectionAssets__00943:hover {
+    box-shadow: var(--glass-shadow-hover);
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   GIF & STICKER PICKER
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Sticker Picker */
+.stickerCategoryGeneric__3ad28 {
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+.stickerCategoryGeneric__3ad28:hover {
+    background: var(--bg-glass-strong) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-shine var(--transition-normal) var(--ease-smooth);
+}
+
+.stickerCategoryGenericSelected__3ad28 {
+    background: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: var(--glass-shadow-active);
+    animation: LC-glow var(--transition-normal) var(--ease-liquid);
+}
+
+/* GIF Picker */
+.categoryFade_d02962 {
+    border-radius: var(--radius-lg) !important;
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+}
+
+.categoryFade_d02962:hover {
+    box-shadow: var(--glass-shadow-hover);
+    animation: LC-fadeIn var(--transition-fast) var(--ease-smooth);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   ATTACHMENTS & FILES
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Attachment */
+.attachment,
+.attachmentContainer_faa96b {
+    background: transparent !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--glass-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    animation: LC-scaleIn var(--transition-normal) var(--ease-smooth);
+}
+
+.attachment:hover,
+.attachmentContainer_faa96b:hover {
+    box-shadow: var(--glass-shadow-hover);
+    transform: translateY(-2px);
+    animation: LC-bounce var(--transition-normal) var(--ease-bounce);
+}
+
+/* Embed */
+.embedFull__623de,
+.embed {
+    background: transparent !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--glass-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   STREAM PREVIEW
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Stream Preview */
+.streamPreview__6da2d {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) brightness(var(--liquid-brightness));
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+.streamPreview__6da2d:hover {
+    box-shadow: var(--glass-shadow-hover);
+    animation: LC-glow var(--transition-normal) var(--ease-liquid);
+}
+
+/* Go Live Indicator */
+.liveIndicator {
+    background: var(--color-danger) !important;
+    color: white !important;
+    animation: LC-pulseGlow var(--transition-slow) var(--ease-liquid) infinite;
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   AUDIO & VIDEO CONTROLS
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Video Container */
+.videoContainer,
+.videoWrapper,
+[class*="videoContainer"] {
+    background: transparent !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(var(--liquid-blur)) brightness(var(--liquid-brightness));
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+.videoContainer:hover,
+.videoWrapper:hover {
+    box-shadow: var(--glass-shadow-hover);
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+/* Video Controls Overlay */
+.videoControls,
+.callQualityControls {
+    background: var(--bg-overlay-strong) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-fadeInDown var(--transition-fast) var(--ease-smooth);
+}
+
+/* Audio Controls */
+.audioControls_cf09d8 {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   PROFILE THEMES & CUSTOMIZATION
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Profile Card */
+.profileCard__39ec2,
+.card__39ec2 {
+    background: transparent !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+.profileCard__39ec2:hover {
+    box-shadow: var(--glass-shadow-hover);
+    transform: translateY(-2px);
+    animation: LC-bounce var(--transition-normal) var(--ease-bounce);
+}
+
+/* Theme Selection */
+.themeSelection__36dee {
+    background: transparent !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+}
+
+.themeSelection__36dee:hover {
+    box-shadow: var(--glass-shadow-hover);
+    animation: LC-pulseScale var(--transition-fast) var(--ease-liquid);
+}
+
+/* Color Picker */
+.customColorPicker__459fb {
+    background: transparent !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(var(--liquid-blur)) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   NITRO & BOOSTS
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Boost Tier Card */
+.tier_a36dee,
+.tierCard_be48d0 {
+    background: transparent !important;
+    border-radius: var(--radius-2xl) !important;
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+.tier_a36dee:hover {
+    box-shadow: var(--glass-shadow-hover);
+    transform: translateY(-3px);
+    animation: LC-bounce var(--transition-normal) var(--ease-bounce);
+}
+
+/* Premium Card */
+.premiumCard {
+    background: transparent !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+}
+
+/* Trial Banner */
+.premiumTrial {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: var(--radius-xl);
+    animation: LC-shimmer var(--transition-slower) linear infinite;
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   PLUGIN COMPATIBILITY
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* BetterDiscord Addons */
+.vc-addon-card {
+    background: transparent !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+.vc-addon-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glass-shadow-hover);
+    animation: LC-bounce var(--transition-normal) var(--ease-bounce);
+}
+
+/* Settings Panels */
+.vc-settings,
+.bd-settings {
+    background: transparent !important;
+    backdrop-filter: blur(var(--liquid-blur)) brightness(var(--liquid-brightness));
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--glass-shadow);
+    animation: LC-fadeIn var(--transition-normal) var(--ease-smooth);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   TEXT COLORS OVERRIDE
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Primary Text */
+.heading,
+.title,
+.subtitle,
+.label,
+.description,
+.placeholder,
+[class*="heading"],
+[class*="title"],
+[class*="text"],
+[class*="messageContent"],
+[class*="username"],
+[class*="displayName"],
+.channelName,
+.groupStart,
+.headerText,
+.displayedNick,
+.username_adebba,
+.nameplate,
+.name_mixed {
+    color: var(--text-white) !important;
+}
+
+::placeholder {
+    color: var(--text-white-muted) !important;
+}
+
+/* Secondary Text */
+[class*="muted"],
+[class*="subtext"],
+[class*="secondary"],
+.timestamp,
+.status,
+[class*="text-muted"],
+.subtext__339d0,
+.subtext__0a06e {
+    color: var(--text-white-secondary) !important;
+}
+
+/* Tertiary Text */
+[class*="tertiary"] {
+    color: var(--text-white-tertiary) !important;
+}
+
+/* Links */
+[class*="link"],
+.link {
+    color: #00ACF2 !important;
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+}
+
+[class*="link"]:hover {
+    text-decoration: underline !important;
+    animation: LC-glow var(--transition-normal) var(--ease-liquid);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   SCROLLBARS
+   ═══════════════════════════════════════════
+   ═══════���═���═════════════════════════════════ */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast) var(--ease-liquid) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: var(--glass-shadow-subtle);
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   PLATFORM SPECIFIC FIXES
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* macOS */
+.platform-osx .scroller {
+    padding-top: var(--space-lg) !important;
+}
+
+/* Windows */
+.platform-win .scroller {
+    padding-top: var(--space-md) !important;
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   PERFORMANCE & ACCESSIBILITY
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    :root {
+        --liquid-blur: 0px;
+    }
+    
+    [class*="wrapper"],
+    [class*="container"],
+    [class*="panel"],
+    [class*="popout"],
+    [class*="modal"] {
+        backdrop-filter: none !important;
+        background: var(--bg-overlay-strong) !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════
+   ═══════════════════════════════════════════
+   DARK MODE FIXES
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+.theme-dark {
+    --background-primary: transparent;
+    --background-secondary: transparent;
+    --background-tertiary: transparent;
+    --channeltextarea-background: transparent;
+    --changelog-background: transparent;
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   BUG FIXES
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Dividers */
+[class*="divider"] {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Loading Spinners */
+[class*="spinner"] {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    border-top-color: rgba(255, 255, 255, 0.8) !important;
+    animation: LC-spin var(--transition-slower) linear infinite;
+}
+
+/* Skeleton Loaders */
+[class*="skeleton"] {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Win32 Divider */
+.winButtonsWithDivider_c38106:before {
+    display: none !important;
+}
+
+/* Connection Icons */
+.connection {
+    transition: all var(--transition-normal) var(--ease-liquid) !important;
+}
+
+.connection:hover {
+    transform: scale(1.1);
+    animation: LC-scaleInBounce var(--transition-fast) var(--ease-bounce);
+}
+
+/* Role Colors */
+.roleCircle {
+    box-shadow: var(--glass-shadow-subtle);
+    animation: LC-fadeIn var(--transition-fast) var(--ease-smooth);
+}
+
+/* ═══════════════════════════════════════════
+   ═══════════════════════════════════════════
+   ANIMATION CLASSES - READY TO USE
+   ═══════════════════════════════════════════
+   ═══════════════════════════════════════════ */
+
+/* Animation Utility Classes */
+.anim-fade-in { animation: LC-fadeIn var(--transition-normal) var(--ease-smooth); }
+.anim-fade-in-up { animation: LC-fadeInUp var(--transition-normal) var(--ease-smooth); }
+.anim-fade-in-down { animation: LC-fadeInDown var(--transition-normal) var(--ease-smooth); }
+.anim-scale-in { animation: LC-scaleIn var(--transition-normal) var(--ease-smooth); }
+.anim-scale-bounce { animation: LC-scaleInBounce var(--transition-normal) var(--ease-bounce); }
+.anim-slide-up { animation: LC-slideUp var(--transition-normal) var(--ease-smooth); }
+.anim-slide-down { animation: LC-slideDown var(--transition-normal) var(--ease-smooth); }
+.anim-liquid { animation: LC-liquidWave var(--transition-slower) var(--ease-float) infinite; }
+.anim-liquid-float { animation: LC-liquidFloat var(--transition-slower) var(--ease-float) infinite; }
+.anim-pulse { animation: LC-pulse var(--transition-slow) var(--ease-liquid) infinite; }
+.anim-glow { animation: LC-glow var(--transition-slow) var(--ease-liquid) infinite; }
+.anim-bounce { animation: LC-bounce var(--transition-slower) var(--ease-bounce) infinite; }
+.anim-spin { animation: LC-spin var(--transition-slower) linear infinite; }
+.anim-shine { animation: LC-shine var(--transition-slower) var(--ease-smooth); }
+.anim-wiggle { animation: LC-wiggle var(--transition-normal) var(--ease-liquid); }
+.anim-shake { animation: LC-shake var(--transition-normal) var(--ease-liquid); }
+.anim-jello { animation: LC-jello var(--transition-normal) var(--ease-liquid); }
+.anim-elastic { animation: LC-elasticBounce var(--transition-normal) var(--ease-elastic); }
+.anim-blur { animation: LC-blurIn var(--transition-normal) var(--ease-smooth); }
+.anim-morph { animation: LC-liquidMorph var(--transition-slower) var(--ease-float) infinite; }
+
+/* ═══════════════════════════════════════════
+   💧 LIQUIDCORD VERSION 2.0.0
+   60+ SMOOTH ANIMATIONS INCLUDED
+   ═══════════════════════════════════════════ */
